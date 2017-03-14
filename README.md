@@ -8,7 +8,7 @@ no hesitate to connect with me (Email:liyijia@gmail.com). Thanks for your readin
 
 ## Contents at Glance
 
-* [Basic React Component](/basic)
-* [Create your first application in React with ES6](#create)
-* [Redux](#domain)
-* [Combine Redux with React](#webapi)
+* [Basic React Component](/tree/master/lesson-01-Basic%20React%20Component)
+* [Create your first application in React with ES6](/tree/master/lesson-02-React%20with%20ES6)
+* [Redux](/tree/master/lesson-03-Redux)
+* [Combine Redux with React](/tree/master/lesson-04-React%20with%20Redux)
