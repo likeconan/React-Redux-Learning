@@ -6,14 +6,6 @@
 I am interested in sharing the technologies I learned to help you and myself to understand them in deeply. If you have any problems please have
 no hesitate to connect with me (Email:liyijia@gmail.com). Thanks for your reading.
 
-## Contents at Glance
-
-* [Basic React Component](/lesson-01-Basic%20React%20Component)
-* [Create your first application in React with ES6](/lesson-02-React%20with%20ES6)
-* [Redux](/lesson-03-Redux)
-* [Combine Redux with React](/lesson-04-React%20with%20Redux)
-
-
 ## About Starting this Tutorial
 
 >### What Do I Need to Know?
@@ -26,3 +18,11 @@ no hesitate to connect with me (Email:liyijia@gmail.com). Thanks for your readin
 
 >### Summary
 >In this chapter, I explained the prerequist of this tutorial and the software that you will require to follow the examples.In next chapter, you'll see how to start with react in basic way.
+
+
+## Contents at Glance
+
+* [Basic React Component](/lesson-01-Basic%20React%20Component)
+* [Create your first application in React with ES6](/lesson-02-React%20with%20ES6)
+* [Redux](/lesson-03-Redux)
+* [Combine Redux with React](/lesson-04-React%20with%20Redux)
