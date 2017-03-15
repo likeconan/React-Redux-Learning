@@ -6,24 +6,25 @@ But react is more like a library as well as angular is a framework. You can trea
 
 ## Create a component with plain js
 
-1.Create a directory and open visual studio code under it
+*  1.Create a directory and open visual studio code under it
 
-2.Create an index.html file with the code as below and add an div element with id named root
+*  2.Create an index.html file with the code as below and add an div element with id named root
+        
         <!DOCTYPE html>
         <html lang="en">
         <head>
-            <title></title>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
+                <title></title>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
         </head>
 
         <body>
-            <div id="root"></div>
+                <div id="root"></div>
         </body>
 
         </html>
 
-3.Create an index.js file with the code as below
+*  3.Create an index.js file with the code as below
         
         var Greeting = function () {
             return React.createElement("div", null, "Hello world!");
@@ -36,12 +37,13 @@ the React is an object that owns many method,the most used one is to createEleme
 the ReactDOM is an object mostly used for rendering the whole element under the root element.
 You can imagine that this is a jquery append method and ReactDOM.render is kind of like replace the content under the root element.
 
-4.Add the libraries script tag after head like below:
+*  4.Add the libraries script tag after head like below:
+        
         <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
         <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
         <script src="./index.js" async></script>
 
-5.Open the index.html with brwoser,you can see the Hello world is present in front of you.
+*  5.Open the index.html with brwoser,you can see the Hello world is present in front of you.
 
 
 
