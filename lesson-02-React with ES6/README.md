@@ -95,3 +95,17 @@ When you are done, don't forget to create index.html under the root directory wi
     </body>
 
     </html>
+
+* ### Install essential packages for building a real application
+
+Open the terminal inside the Visual Studio Code, type the command below to install the packages
+
+    npm install --save babel-cli babel-core babel-preset-es2015 babel-preset-react babel-preset-stage-0 react react-dom
+
+    npm install --save-dev nodemon webpack concurrently babel-loader
+
+The babels packages is used to transfer es6 and react into original plain js, the nodemon is used for restarting when
+the file changes, the webpack is used for packing js/css/less/sass files into one file, concurrently is used for executing mutiple commands
+
+* ### Start a component with ES6
+
