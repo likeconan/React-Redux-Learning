@@ -104,17 +104,21 @@ Open the terminal inside the Visual Studio Code, type the command below to insta
 
     npm install --save babel-cli babel-core babel-preset-es2015 babel-preset-react babel-preset-stage-0 react react-dom
 
-    npm install --save-dev nodemon webpack concurrently babel-loader
+    npm install --save-dev nodemon webpack concurrently babel-loader extract-text-webpack-plugin less-loader less style-loader css-loader
 
 The babels packages is used to transfer es6 and react into original plain js, the nodemon is used for restarting when
-the file changes, the webpack is used for packing js/css/less/sass files into one file, concurrently is used for executing mutiple commands
+the file changes, the webpack,extract-text-webpack-plugin,less-loader,css-loader,style-loader are used for packing js/css/less/sass files into one file, 
+concurrently is used for executing mutiple commands
 
-* ### Start a component with ES6
+## Start a component with ES6
+
+* ### create directories and component
 
 > * Create /client directory under the root
 > * Create a file named app.client.js under /client directory
 > * Create /components directory under the /client directory
-> * Create a file named chat-room.js under the /components directory
+> * Create a directory named robot-chatroom under the /components directory
+> * Create a file named robot-chatroom.js under the /robot-chatroom directory
 
 Make the robot-chatroom.js code like below:
 
@@ -136,12 +140,14 @@ And then Make the app.client.js code like below:
 
     import React from 'react'
     import ReactDOM from 'react-dom';
-    import RobotChatRoom from './components/robot-chatroom';
+    import RobotChatRoom from './components/robot-chatroom/robot-chatroom';
 
     ReactDOM.render(
         <RobotChatRoom/>, document.getElementById('root'));
 
-Next thing you need to do is creating the webpack.config.js file under the root to pack all your frontend files,
+* ### Use webpack to pack your code
+
+Creating the webpack.config.js file under the root to pack all your frontend files,
 this config is used in webpack-version 2, you can check the <a href='https://webpack.js.org/' target="_blank">document</a> and the code of it like below:
 
     
@@ -185,5 +191,77 @@ The Last thing is editing your package.json file, and add start property to get 
 
 You can try type npm start in the terminal and open the browser with localhost:3000 to see the result.
 
+## Use less with react component
+
+* Create robot-chatroom.less file under /robot-chatroom directory and code like below:
+
+    .text-center {
+        text-align: center;
+    }
+
+* And then edit the webconfig.js like this:
+
+    var webpack = require('webpack');
+    var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+    var PROD = process.env.NODE_ENV === "production";
+
+    const extractLess = new ExtractTextPlugin({filename: "./bundle.css"});
+
+    module.exports = {
+        entry: ['./client/app.client.js'],
+        output: {
+            path: './build',
+            filename: 'bundle.js'
+        },
+        resolve: {
+            // Add `.ts` and `.tsx` as a resolvable extension.
+            extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+        },
+        plugins: PROD
+            ? [
+                new webpack
+                    .optimize
+                    .UglifyJsPlugin({
+                        compress: {
+                            warnings: false
+                        }
+                    })
+            ]
+            : [],
+        module: {
+            rules: [
+                {
+                    test: /\.js$/,
+                    exclude: /(node_modules|bower_components)/,
+                    loader: 'babel-loader',
+                    query: {
+                        presets: ['es2015', 'react', 'stage-0']
+                    }
+                }, {
+                    test: /\.less$/,
+                    use: extractLess.extract({
+                        use: [
+                            {
+                                loader: "css-loader"
+                            }, {
+                                loader: "less-loader"
+                            }
+                        ],
+                        // use style-loader in development
+                        fallback: "style-loader"
+                    })
+                }
+
+            ]
+        },
+        plugins: [extractLess]
+    }
+
+* Add link tag in index.html like this:
+
+    <link rel="stylesheet" href="./build/bundle.css" />
+
+* Try with npm start and also open the browser with localhost:3000, you will see the text is aligned into center
 
 

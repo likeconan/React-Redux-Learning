@@ -25,7 +25,12 @@
   "devDependencies": {
     "babel-loader": "^6.4.1",
     "concurrently": "^3.4.0",
+    "css-loader": "^0.27.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "less": "^2.7.2",
+    "less-loader": "^3.0.0",
     "nodemon": "^1.11.0",
+    "style-loader": "^0.14.1",
     "webpack": "^2.2.1"
   }
 }
