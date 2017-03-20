@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Hello extends Component {
+class RobotChatRoom extends Component {
     render() {
         return (
             <div>
-                123
+                Welcome to Robot Chat Room
             </div>
         );
     }
 }
 
-export default Hello;
+export default RobotChatRoom;

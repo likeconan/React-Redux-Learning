@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
-import Hello from './components/hello';
+import RobotChatRoom from './components/robot-chatroom';
 
 ReactDOM.render(
-    <Hello/>, document.getElementById('root'));
+    <RobotChatRoom/>, document.getElementById('root'));

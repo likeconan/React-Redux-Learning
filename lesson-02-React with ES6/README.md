@@ -93,8 +93,10 @@ When you are done, don't forget to create index.html under the root directory wi
     <body>
         <div id="root"></div>
     </body>
-
+    <script src="./build/bundle.js" async></script>
     </html>
+
+The script used in index.html will be created later.
 
 * ### Install essential packages for building a real application
 
@@ -108,4 +110,80 @@ The babels packages is used to transfer es6 and react into original plain js, th
 the file changes, the webpack is used for packing js/css/less/sass files into one file, concurrently is used for executing mutiple commands
 
 * ### Start a component with ES6
+
+> * Create /client directory under the root
+> * Create a file named app.client.js under /client directory
+> * Create /components directory under the /client directory
+> * Create a file named chat-room.js under the /components directory
+
+Make the robot-chatroom.js code like below:
+
+    import React, { Component } from 'react';
+
+    class RobotChatRoom extends Component {
+        render() {
+            return (
+                <div>
+                    Welcome to Robot Chat Room
+                </div>
+            );
+        }
+    }
+
+    export default RobotChatRoom;
+
+And then Make the app.client.js code like below:
+
+    import React from 'react'
+    import ReactDOM from 'react-dom';
+    import RobotChatRoom from './components/robot-chatroom';
+
+    ReactDOM.render(
+        <RobotChatRoom/>, document.getElementById('root'));
+
+Next thing you need to do is creating the webpack.config.js file under the root to pack all your frontend files,
+this config is used in webpack-version 2, you can check the <a href='https://webpack.js.org/' target="_blank">document</a> and the code of it like below:
+
+    
+    var webpack = require('webpack');
+    var PROD = process.env.NODE_ENV === "production";
+
+    module.exports = {
+        entry: ['./client/app.client.js'],
+        output: {
+            path: './build',
+            filename: 'bundle.js'
+        },
+        resolve: {
+            // Add `.ts` and `.tsx` as a resolvable extension.
+            extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+        },
+        plugins: PROD ? [
+            new webpack.optimize.UglifyJsPlugin({
+                compress: { warnings: false }
+            })
+        ] : [],
+        module: {
+            rules: [
+                {
+                    test: /\.js$/,
+                    exclude: /(node_modules|bower_components)/,
+                    loader: 'babel-loader',
+                    query: {
+                        presets: ['es2015', 'react', 'stage-0'],
+                    }
+                }
+            
+            ]
+
+        }
+    }
+
+The Last thing is editing your package.json file, and add start property to get your project work right.
+
+    "start": "concurrently \"webpack --config webpack.config.js\" \"webpack --watch \" \"nodemon ./bin/www\" "
+
+You can try type npm start in the terminal and open the browser with localhost:3000 to see the result.
+
+
 
