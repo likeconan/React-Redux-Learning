@@ -32,7 +32,7 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
-                query: {
+                options: {
                     presets: ['es2015', 'react', 'stage-0']
                 }
             }, {

@@ -264,4 +264,6 @@ You can try type npm start in the terminal and open the browser with localhost:3
 
 * Try with npm start and also open the browser with localhost:3000, you will see the text is aligned into center
 
+## Use state
+
 

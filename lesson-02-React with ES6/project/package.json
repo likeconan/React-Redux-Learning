@@ -6,6 +6,7 @@
     "start": "concurrently \"webpack --config webpack.config.js\" \"webpack --watch \" \"nodemon ./bin/www\" "
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
     "babel-preset-es2015": "^6.24.0",
