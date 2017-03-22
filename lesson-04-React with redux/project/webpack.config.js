@@ -1,6 +1,7 @@
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 var PROD = process.env.NODE_ENV === "production";
 
 const extractLess = new ExtractTextPlugin({filename: "./bundle.css"});
@@ -33,7 +34,10 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['es2015', 'react', 'stage-0']
+                    presets: [
+                        'es2015', 'react', 'stage-0'
+                    ],
+                    plugins: ['babel-plugin-transform-class-properties', 'transform-decorators-legacy']
                 }
             }, {
                 test: /\.less$/,
