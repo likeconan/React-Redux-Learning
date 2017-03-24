@@ -92,7 +92,6 @@ class RobotChatRoom extends Component {
                 <div className='chat-con'>
                     <div className="form-group">
                         <input
-                            type="email"
                             className="form-control"
                             placeholder="What do you want?"
                             onKeyPress={this._keyPress}

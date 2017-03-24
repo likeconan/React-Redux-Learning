@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require("path");
 module.exports = {
     entry: {
-        app: [//"./client/app.client.js",
+        app: [//"./client/store.reducer.js",
             //"./client/combine.reducer.js",
             "./client/applyMiddleware.js"]
     },

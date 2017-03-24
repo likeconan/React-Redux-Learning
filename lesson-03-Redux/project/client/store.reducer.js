@@ -9,7 +9,7 @@ const reducer = function (state, action) {
     return state;
 }
 
-const store = createStore(reducer, 0);
+const store = createStore(reducer);
 
 store.subscribe(() => {
     console.log('store changes', store.getState())
