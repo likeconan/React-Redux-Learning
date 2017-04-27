@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 @connect((store) => {
-    return {tweets: store.tweetStore.tweets}
+    return {tweets: store.tweetReducer.tweets}
 })
 
 class ChatsList extends Component {

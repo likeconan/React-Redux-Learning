@@ -34,12 +34,12 @@ And then create reducers directory and an index.js file to combine all reducers 
 
     import {combineReducers} from 'redux';
 
-    import userStore from './user.reducer';
-    import tweetStore from './tweet.reducer';
+    import userReducer from './user.reducer';
+    import tweetReducer from './tweet.reducer';
 
     export default combineReducers({
-        userStore,
-        tweetStore,
+        userReducer,
+        tweetReducer,
     });
 
 Next thing you need to do is adding related actions,create the actions directory, and taking one as an example like below:
@@ -118,7 +118,7 @@ The other thing you need to know is how to use connect in smart react component.
     import {connect} from 'react-redux';
 
     @connect((store) => {
-        return {editText: store.tweetStore.editText, user: store.userStore.user}
+        return {editText: store.tweetReducer.editText, user: store.userReducer.user}
     })
 
     class PostTweet extends Component {
