@@ -384,32 +384,34 @@ So the editing text and messages array would be the state accroding to the princ
             .state
             .chats
             .map((val, key) => {
+                
                 return (
-                    <li key={key} className={val.className}>
-                        <span>
-                            {val.text}
-                        </span>
-                        <img className='header' src={val.header}/>
-                    </li>
+                            
+                            <li key={key} className={val.className}>
+                                <span>
+                                    {val.text}
+                                </span>
+                                <img className='header' src={val.header}/>
+                            </li>
                 )
             })
         return (
-            <div>
-                <h1 className='text-center'>Welcome to Robot Chat Room</h1>
-                <div className='chat-con'>
-                    <div className="form-group">
-                        <input
-                            className="form-control"
-                            placeholder="What do you want?"
-                            onKeyPress={this._keyPress}
-                            value={this.state.editText}
-                            onChange={this._onChange}/>
+                    <div>
+                        <h1 className='text-center'>Welcome to Robot Chat Room</h1>
+                        <div className='chat-con'>
+                            <div className="form-group">
+                                <input
+                                    className="form-control"
+                                    placeholder="What do you want?"
+                                    onKeyPress={this._keyPress}
+                                    value={this.state.editText}
+                                    onChange={this._onChange}/>
+                            </div>
+                            <ul className="list-group chats">
+                                {chatsEle}
+                            </ul>
+                        </div>
                     </div>
-                    <ul className="list-group chats">
-                        {chatsEle}
-                    </ul>
-                </div>
-            </div>
         );
     }
 
