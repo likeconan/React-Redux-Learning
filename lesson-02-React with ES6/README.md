@@ -151,43 +151,43 @@ Creating the webpack.config.js file under the root to pack all your frontend fil
 this config is used in webpack-version 2, you can check the <a href='https://webpack.js.org/' target="_blank">document</a> and the code of it like below:
 
     
-    var webpack = require('webpack');
-    var PROD = process.env.NODE_ENV === "production";
+        var webpack = require('webpack');
+        var PROD = process.env.NODE_ENV === "production";
 
-    module.exports = {
-        entry: ['./client/app.client.js'],
-        output: {
-            path: './build',
-            filename: 'bundle.js'
-        },
-        resolve: {
-            // Add `.ts` and `.tsx` as a resolvable extension.
-            extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
-        },
-        plugins: PROD ? [
-            new webpack.optimize.UglifyJsPlugin({
-                compress: { warnings: false }
-            })
-        ] : [],
-        module: {
-            rules: [
-                {
-                    test: /\.js$/,
-                    exclude: /(node_modules|bower_components)/,
-                    loader: 'babel-loader',
-                    query: {
-                        presets: ['es2015', 'react', 'stage-0'],
+        module.exports = {
+            entry: ['./client/app.client.js'],
+            output: {
+                path: './build',
+                filename: 'bundle.js'
+            },
+            resolve: {
+                // Add `.ts` and `.tsx` as a resolvable extension.
+                extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+            },
+            plugins: PROD ? [
+                new webpack.optimize.UglifyJsPlugin({
+                    compress: { warnings: false }
+                })
+            ] : [],
+            module: {
+                rules: [
+                    {
+                        test: /\.js$/,
+                        exclude: /(node_modules|bower_components)/,
+                        loader: 'babel-loader',
+                        query: {
+                            presets: ['es2015', 'react', 'stage-0'],
+                        }
                     }
-                }
-            
-            ]
+                
+                ]
 
+            }
         }
-    }
 
 The Last thing is editing your package.json file, and add start property to get your project work right.
 
-    "start": "concurrently \"webpack --config webpack.config.js\" \"webpack --watch \" \"nodemon ./bin/www\" "
+        "start": "concurrently \"webpack --config webpack.config.js\" \"webpack --watch \" \"nodemon ./bin/www\" "
 
 You can try type npm start in the terminal and open the browser with localhost:3000 to see the result.
 
@@ -195,68 +195,68 @@ You can try type npm start in the terminal and open the browser with localhost:3
 
 * Create robot-chatroom.less file under /robot-chatroom directory and code like below:
 
-    .text-center {
-        text-align: center;
-    }
+        .text-center {
+            text-align: center;
+        }
 
 * And then edit the webconfig.js like this:
 
-    var webpack = require('webpack');
-    var ExtractTextPlugin = require("extract-text-webpack-plugin");
-    var path = require('path');
-    var PROD = process.env.NODE_ENV === "production";
+        var webpack = require('webpack');
+        var ExtractTextPlugin = require("extract-text-webpack-plugin");
+        var path = require('path');
+        var PROD = process.env.NODE_ENV === "production";
 
-    const extractLess = new ExtractTextPlugin({filename: "./bundle.css"});
+        const extractLess = new ExtractTextPlugin({filename: "./bundle.css"});
 
-    module.exports = {
-        entry: ['./client/app.client.js'],
-        output: {
-            path: path.resolve(__dirname, 'build'),
-            filename: 'bundle.js'
-        },
-        resolve: {
-            // Add `.ts` and `.tsx` as a resolvable extension.
-            extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
-        },
-        plugins: PROD
-            ? [
-                new webpack
-                    .optimize
-                    .UglifyJsPlugin({
-                        compress: {
-                            warnings: false
-                        }
-                    })
-            ]
-            : [],
-        module: {
-            rules: [
-                {
-                    test: /\.js$/,
-                    exclude: /(node_modules|bower_components)/,
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['es2015', 'react', 'stage-0']
-                    }
-                }, {
-                    test: /\.less$/,
-                    use: extractLess.extract({
-                        use: [
-                            {
-                                loader: "css-loader"
-                            }, {
-                                loader: "less-loader"
+        module.exports = {
+            entry: ['./client/app.client.js'],
+            output: {
+                path: path.resolve(__dirname, 'build'),
+                filename: 'bundle.js'
+            },
+            resolve: {
+                // Add `.ts` and `.tsx` as a resolvable extension.
+                extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+            },
+            plugins: PROD
+                ? [
+                    new webpack
+                        .optimize
+                        .UglifyJsPlugin({
+                            compress: {
+                                warnings: false
                             }
-                        ],
-                        // use style-loader in development
-                        fallback: "style-loader"
-                    })
-                }
+                        })
+                ]
+                : [],
+            module: {
+                rules: [
+                    {
+                        test: /\.js$/,
+                        exclude: /(node_modules|bower_components)/,
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['es2015', 'react', 'stage-0']
+                        }
+                    }, {
+                        test: /\.less$/,
+                        use: extractLess.extract({
+                            use: [
+                                {
+                                    loader: "css-loader"
+                                }, {
+                                    loader: "less-loader"
+                                }
+                            ],
+                            // use style-loader in development
+                            fallback: "style-loader"
+                        })
+                    }
 
-            ]
-        },
-        plugins: [extractLess]
-    }
+                ]
+            },
+            plugins: [extractLess]
+        }
 
 * Add link tag in index.html like this:
 
@@ -266,32 +266,32 @@ You can try type npm start in the terminal and open the browser with localhost:3
 
 ## Use props and state to make chat room work
 
-    For your information, the purpose of this tutorial is teaching you how to use react and redux to create your web application, so I include bootstrap library in index.html to make the display better looking. And the index.htm code would be like below:
+For your information, the purpose of this tutorial is teaching you how to use react and redux to create your web application, so I include bootstrap library in index.html to make the display better looking. And the index.htm code would be like below:
 
-    <!DOCTYPE html>
-    <html>
+        <!DOCTYPE html>
+        <html>
 
-    <head>
-        <title>React Tutorial</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no">
-        <link rel="stylesheet" href="./build/bundle.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-            crossorigin="anonymous">
-    </head>
+        <head>
+            <title>React Tutorial</title>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no">
+            <link rel="stylesheet" href="./build/bundle.css" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+                crossorigin="anonymous">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+                crossorigin="anonymous">
+        </head>
 
-    <body>
-        <div id="root"></div>
-    </body>
-    <script src="./build/bundle.js" async></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+        <body>
+            <div id="root"></div>
+        </body>
+        <script src="./build/bundle.js" async></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
-    </html>
+        </html>
 
 * First of all, we need to understand when to use props and when to use state,the principle of using state is
 
@@ -307,17 +307,17 @@ So the editing text and messages array would be the state accroding to the princ
 
 * So we create the state like below:
 
-    class RobotChatRoom extends Component {
+        class RobotChatRoom extends Component {
 
-        constructor(props) {
-            super(props);
-            this.state = {
-                editText: '',
-                chats: []
+            constructor(props) {
+                super(props);
+                this.state = {
+                    editText: '',
+                    chats: []
+                }
+
             }
-
-        }
-        .........//more code
+            .........//more code
 
 * And then the related events and render function would be like below:
 
